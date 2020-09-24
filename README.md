@@ -8,7 +8,7 @@ Bot automatycznie wpisujący !boss, !ffa, !heist u demonza
 ```bash
 git clone https://github.com/szkajpur/twitch-demonzz1-events-bot
 ```
-3. Przechodzimy do folderu twitch-demonzz1-events-bot za pomocą cd twitch-demonzz1-events-bot
+3. Przechodzimy do folderu twitch-demonzz1-events-bot za pomocą **cd twitch-demonzz1-events-bot**
 4. W cmd będac w folderze bota wpisujemy **npm i**
 5. Zmieniamy nazwę pliku **configexample.json** na **config.json**
 6. Edytujemy plik **config.json**
