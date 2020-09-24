@@ -1,0 +1,9 @@
+{
+    "username": "",
+    "oauth": "",
+    "channels": ["demonzz1"],
+    "heist": "10000",
+    "prefix": "!",
+    "command": "testbota",
+    "connect": "Połączono bota! :D"
+}
