@@ -1,0 +1,10 @@
+{
+  "name": "szkajpurbot",
+  "version": "0.0.1",
+  "main": "index.js",
+  "author": "szkajpur",
+  "license": "ISC",
+  "dependencies": {
+    "dank-twitch-irc": "^4.1.0"
+  }
+}
