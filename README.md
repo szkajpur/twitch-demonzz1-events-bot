@@ -8,9 +8,10 @@ Bot automatycznie wpisujący !boss, !ffa, !heist u demonza
 ```bash
 git clone https://github.com/szkajpur/twitch-demonzz1-events-bot
 ```
-3. W cmd będac w folderze bota wpisujemy **npm i**
-4. Zmieniamy nazwę pliku **configexample.json** na **config.json**
-5. Edytujemy plik **config.json**
+3. Przechodzimy do folderu twitch-demonzz1-events-bot za pomocą cd twitch-demonzz1-events-bot
+4. W cmd będac w folderze bota wpisujemy **npm i**
+5. Zmieniamy nazwę pliku **configexample.json** na **config.json**
+6. Edytujemy plik **config.json**
 ```bash
    "username": "", <- nickname
    "oauth": "", <- klucz oauth, bierzemy go ze strony https://twitchapps.com/tmi/ ! KOPIUJEMY WRAZ Z OAUTH: !
@@ -20,5 +21,5 @@ git clone https://github.com/szkajpur/twitch-demonzz1-events-bot
    "command": "testbota", <- komenda służąca do testowania bota
    "connect": "Połączono bota! :D" <- wiadomość pojawiająca się na czacie po połączeniu się bota
 ```
-6. Uruchamiamy bota komendą **node .**
-7. Jeśli pojawiła się wiadomość **Pomyślnie połączono do czatu**, bot działa prawidłowo ;)
+7. Uruchamiamy bota komendą **node .**
+8. Jeśli pojawiła się wiadomość **Pomyślnie połączono do czatu**, bot działa prawidłowo ;)
