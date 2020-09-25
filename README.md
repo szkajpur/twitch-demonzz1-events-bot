@@ -3,7 +3,7 @@
 ### ❕ Aby bot działał potrzebny jest [node](https://nodejs.org/en/) i [npm](https://www.npmjs.com/get-npm) (domyślnie instalowany wraz z node) 
 
 ## INSTALACJA I KONFIGURACJA
-1. Odpalamy cmd i używając **cd (ścieżka folderu)** przechodzimy do wcześniej stworzonego folderu, w którym będzie znajdował się bot.
+1. Odpalamy cmd i używając `cd (ścieżka folderu)` przechodzimy do wcześniej stworzonego folderu, w którym będzie znajdował się bot.
 2. Pobieramy pliki z [githuba](https://github.com/szkajpur/twitch-demonzz1-events-bot/archive/master.zip) i przenosimy je do wcześniej wskazanego folderu. Możemy to zrobić również poprzez komendę `git clone https://github.com/szkajpur/twitch-demonzz1-events-bot`
 3. Przechodzimy do folderu twitch-demonzz1-events-bot za pomocą `cd twitch-demonzz1-events-bot`
 4. W cmd będac w folderze bota wpisujemy `npm i`
