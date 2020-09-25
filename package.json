@@ -5,6 +5,7 @@
   "author": "szkajpur",
   "license": "ISC",
   "dependencies": {
+    "chalk": "^4.1.0",
     "dank-twitch-irc": "^4.1.0"
   }
 }

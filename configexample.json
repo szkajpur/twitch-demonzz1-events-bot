@@ -5,5 +5,5 @@
     "heist": "10000",
     "prefix": "!",
     "command": "testbota",
-    "connect": "message"
+    "connect": "bot został połączony"
 }
