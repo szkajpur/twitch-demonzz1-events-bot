@@ -7,8 +7,8 @@
 2. Pobieramy pliki z [githuba](https://github.com/szkajpur/twitch-demonzz1-events-bot/archive/master.zip) i przenosimy je do wcześniej wskazanego folderu. Możemy to zrobić również poprzez komendę `git clone https://github.com/szkajpur/twitch-demonzz1-events-bot`
 3. Przechodzimy do folderu twitch-demonzz1-events-bot za pomocą `cd twitch-demonzz1-events-bot`
 4. W cmd będac w folderze bota wpisujemy `npm i`
-* Zmieniamy nazwę pliku **configexample.json** na **config.json**
-* Edytujemy plik **config.json**
+5. Zmieniamy nazwę pliku **configexample.json** na **config.json**
+6. Edytujemy plik **config.json**
 ```bash
    "username": "", // nickname
    "oauth": "", // klucz oauth, bierzemy go ze strony https://twitchapps.com/tmi/ ! KOPIUJEMY WRAZ Z OAUTH: !
@@ -18,5 +18,5 @@
    "command": "testbota", // komenda służąca do testowania bota
    "connect": "Połączono bota! :D" // wiadomość pojawiająca się na czacie po połączeniu się bota
 ```
-* Uruchamiamy bota komendą `node .`
-* Jeśli pojawiła się wiadomość **Pomyślnie połączono do czatu...**, bot działa prawidłowo ;)
+7. Uruchamiamy bota komendą `node .`
+8. Jeśli pojawiła się wiadomość **Pomyślnie połączono do czatu...**, bot działa prawidłowo ;)
