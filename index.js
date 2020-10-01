@@ -27,7 +27,7 @@ client.on("PRIVMSG", message => {
             client.say(config.channels[0], "!ffa");
             console.log(chalk.yellowBright("Wysłano !ffa"));
         }
-        if (message.messageText.includes("!heist (amount).")){
+        if (message.messageText.includes("The cops have given up!")){
             client.say(config.channels[0], `!heist ${config.heist}`);
             console.log(chalk.yellowBright(`Wysłano !heist ${config.heist}`));
         }
