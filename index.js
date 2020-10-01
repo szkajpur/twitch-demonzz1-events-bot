@@ -19,15 +19,15 @@ client.on("PRIVMSG", message => {
         return;        
     }
     if (message.senderUsername == "demonzzbot"){
-        if (message.messageText == "The arena has been cleaned up... Want to go again?! Type !boss to start!"){
+        if (message.messageText.includes("Type !boss to join!")){
             client.say(config.channels[0], "!boss");
             console.log(chalk.yellowBright("Wysłano !boss"));
         }
-        if (message.messageText == "The arena is now open! Type !ffa to join!"){
+        if (message.messageText.includes("Type !ffa to join!")){
             client.say(config.channels[0], "!ffa");
             console.log(chalk.yellowBright("Wysłano !ffa"));
         }
-        if (message.messageText == "The cops have given up! If you want to get a team together type !heist (amount)."){
+        if (message.messageText.includes("!heist (amount).")){
             client.say(config.channels[0], `!heist ${config.heist}`);
             console.log(chalk.yellowBright(`Wysłano !heist ${config.heist}`));
         }
