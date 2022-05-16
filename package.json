@@ -1,6 +1,6 @@
 {
   "name": "bossbot",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Bot automatycznie wpisujący !boss, !ffa, !heist u demonza.",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,9 @@
   "author": "szkajpur",
   "license": "MIT",
   "dependencies": {
-    "@aidenhadisi/amazeful-twitch-irc": "^4.5.1",
-    "chalk": "^4.1.0"
+    "@kararty/dank-twitch-irc": "^4.6.0",
+    "auto-reload": "^0.1.0",
+    "chalk": "^4.1.0",
+    "edit-json-file": "^1.7.0"
   }
 }
