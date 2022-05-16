@@ -1,6 +1,15 @@
-const { ChatClient, AlternateMessageModifier, SlowModeRateLimiter, replyToServerPing } = require('@aidenhadisi/amazeful-twitch-irc');
+const { ChatClient, AlternateMessageModifier, SlowModeRateLimiter, replyToServerPing } = require('@kararty/dank-twitch-irc');
 const chalk = require('chalk');
-const config = require("./config.json");
+const { time } = require('console');
+const fs = require('fs');
+const editJsonFile = require("edit-json-file");
+const reload = require('auto-reload');
+
+var config = reload("./config.json", 3000);
+
+let file = editJsonFile(`${__dirname}/config.json`, {
+    autosave: true
+});
 
 // declare client
 let client = new ChatClient({
@@ -25,10 +34,7 @@ client.on("close", async (error) => {
 
 //demonzzbot events
 client.on("PRIVMSG", async (msg) => {
-    if (msg.senderUsername == client.configuration.username){
-        return;        
-    }
-    if (msg.senderUserID == '180654261'){
+    if (msg.senderUsername == config.bossBotName){
         if (msg.messageText.includes("Type !boss to join!")){
             client.say(msg.channelName, "!boss");
         }
@@ -39,13 +45,34 @@ client.on("PRIVMSG", async (msg) => {
             client.say(msg.channelName, `!heist ${config.heist}`);
         }
     };
-
-//sprawdzanie czy bot dziala
+//commands
     if (msg.messageText.startsWith(config.prefix)){
-        const komenda = msg.messageText.slice(config.prefix.length).split(" ")[0];
-        switch(komenda){
+        const args = msg.messageText.slice(config.prefix.length).trim().split(/\s+/);
+        const command = args.shift().toLowerCase();
+        switch(command){
             case `${config.command}`:
-                client.say(msg.channelName, `@${message.senderUsername}, Bot działa prawidłowo ;)`);
+                client.say(msg.channelName, `@${msg.senderUsername}, Bot działa prawidłowo ;)`);
+                break;
+            case "ustaw":
+                if (msg.senderUsername != client.configuration.username){
+                    return;
+                };
+                let heist = parseInt(args[0]);
+                if (isNaN(heist)){
+                    client.say(msg.channelName, `@${msg.senderUsername}, Podaj poprawną wartość! ${config.prefix}ustaw (liczba do max 10k)`);
+                    return;
+                } else if(heist > 10000){
+                    client.say(msg.channelName, `@${msg.senderUsername}, Podaj liczbę do max 10k!`);
+                    return;
+                };
+                file.set("heist", heist);
+                client.say(msg.channelName, `@${msg.senderUsername}, Pomyślnie zmieniono ilość heista na ${heist}!`);
+                break;
+            case "jakiheist":
+                if (msg.senderUsername != client.configuration.username){
+                    return;
+                };
+                client.say(msg.channelName, `@${msg.senderUsername}, Masz aktualnie ustawione ${config.heist} heista ;)`);
                 break;
         }
     }
