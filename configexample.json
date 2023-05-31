@@ -1,12 +1,12 @@
 {
-  "username": "szkajpur",
-  "oauth": "oauth:",
-  "channels": [
-    "demonzz1"
-  ],
-  "heist": 123,
-  "prefix": "!",
-  "command": "testbota",
-  "connect": "Połączono ;)",
-  "bossBotName": "demonzzbot"
+    "username": "szkajpur",
+    "oauth": "",
+    "channels": [
+      "demonzz1"
+    ],
+    "heist": 123,
+    "prefix": "!",
+    "command": "testbota",
+    "connect": "aha60",
+    "bossBotName": "demonzzbot"
 }

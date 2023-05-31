@@ -9,9 +9,9 @@
   "author": "szkajpur",
   "license": "MIT",
   "dependencies": {
-    "@kararty/dank-twitch-irc": "^4.6.0",
+    "@kararty/dank-twitch-irc": "^6.0.0",
     "auto-reload": "^0.1.0",
-    "chalk": "^4.1.0",
+    "chalk": "^4.1.2",
     "edit-json-file": "^1.7.0"
   }
 }

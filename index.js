@@ -1,7 +1,5 @@
-const { ChatClient, AlternateMessageModifier, SlowModeRateLimiter, replyToServerPing } = require('@kararty/dank-twitch-irc');
+const { ChatClient, AlternateMessageModifier, SlowModeRateLimiter } = require('@kararty/dank-twitch-irc');
 const chalk = require('chalk');
-const { time } = require('console');
-const fs = require('fs');
 const editJsonFile = require("edit-json-file");
 const reload = require('auto-reload');
 
@@ -14,7 +12,7 @@ let file = editJsonFile(`${__dirname}/config.json`, {
 // declare client
 let client = new ChatClient({
     username: config.username,
-    password: config.oauth,
+    password: `oauth:${config.oauth}`,
     rateLimits: "default"
 });
 
