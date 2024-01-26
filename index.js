@@ -1,11 +1,13 @@
-const { ChatClient, AlternateMessageModifier, SlowModeRateLimiter } = require('@kararty/dank-twitch-irc');
-const chalk = require('chalk');
-const editJsonFile = require("edit-json-file");
-const reload = require('auto-reload');
+import { ChatClient, AlternateMessageModifier, SlowModeRateLimiter } from '@kararty/dank-twitch-irc';
+import chalk from 'chalk';
+import editJsonFile from "edit-json-file";
+import reload from 'self-reload-json';
 
-var config = reload("./config.json", 3000);
+const __dirname = new URL('.', import.meta.url).pathname;
 
-let file = editJsonFile(`${__dirname}/config.json`, {
+var config = new reload(__dirname + '/config.json');
+
+let file = editJsonFile(__dirname + '/config.json', {
     autosave: true
 });
 
@@ -13,7 +15,10 @@ let file = editJsonFile(`${__dirname}/config.json`, {
 let client = new ChatClient({
     username: config.username,
     password: `oauth:${config.oauth}`,
-    rateLimits: "default"
+    connection: {
+        type: "websocket",
+        secure: true,
+    },
 });
 
 // events on client
@@ -24,6 +29,7 @@ client.on("ready", async () => {
 	console.log(chalk.greenBright("Pomyślnie połączono do czatu:") + chalk.blueBright(` ${config.channels[0]}`));
     client.say(config.channels[0], `${config.connect}`);
 });
+
 client.on("close", async (error) => {
     if (error !== null){
         console.error(`Client closed due to error`, error);
@@ -32,7 +38,7 @@ client.on("close", async (error) => {
 
 //demonzzbot events
 client.on("PRIVMSG", async (msg) => {
-    if (msg.senderUsername == config.bossBotName){
+    if (msg.senderUsername === config.bossBotName){
         if (msg.messageText.includes("Type !boss to join!")){
             client.say(msg.channelName, "!boss");
         }
@@ -42,6 +48,7 @@ client.on("PRIVMSG", async (msg) => {
         if (msg.messageText.includes("-Everyone can Join!- In order to join type !heist (amount).")){
             client.say(msg.channelName, `!heist ${config.heist}`);
         }
+        console.log(chalk.cyanBright(`#${msg.channelName} `) + chalk.yellowBright(`${msg.senderUsername} `) + chalk.greenBright(`-> ${msg.messageText}`));
     };
 //commands
     if (msg.messageText.startsWith(config.prefix)){
@@ -50,29 +57,34 @@ client.on("PRIVMSG", async (msg) => {
         switch(command){
             case `${config.command}`:
                 client.say(msg.channelName, `@${msg.senderUsername}, Bot działa prawidłowo ;)`);
+                console.log(chalk.cyanBright(`#${msg.channelName} `) + chalk.yellowBright(`${msg.senderUsername} -> `) + chalk.greenBright(`${msg.messageText}`));
                 break;
             case "ustaw":
-                if (msg.senderUsername != client.configuration.username){
-                    return;
-                };
+                if (msg.senderUsername !== client.configuration.username) { return };
                 let heist = parseInt(args[0]);
                 if (isNaN(heist)){
                     client.say(msg.channelName, `@${msg.senderUsername}, Podaj poprawną wartość! ${config.prefix}ustaw (liczba do max 10k)`);
                     return;
-                } else if(heist > 10000){
-                    client.say(msg.channelName, `@${msg.senderUsername}, Podaj liczbę do max 10k!`);
+                } else if(heist > 10000 || heist <= 0){
+                    client.say(msg.channelName, `@${msg.senderUsername}, Podaj liczbę od 1 do max 10k!`);
                     return;
                 };
                 file.set("heist", heist);
                 client.say(msg.channelName, `@${msg.senderUsername}, Pomyślnie zmieniono ilość heista na ${heist}!`);
+                console.log(chalk.cyanBright(`#${msg.channelName} `) + chalk.yellowBright(`${msg.senderUsername} -> `) + chalk.greenBright(`${msg.messageText}`));
                 break;
             case "jakiheist":
-                if (msg.senderUsername != client.configuration.username){
-                    return;
-                };
+                if (msg.senderUsername !== client.configuration.username) { return };
                 client.say(msg.channelName, `@${msg.senderUsername}, Masz aktualnie ustawione ${config.heist} heista ;)`);
+                console.log(chalk.cyanBright(`#${msg.channelName} `) + chalk.yellowBright(`${msg.senderUsername} -> `) + chalk.greenBright(`${msg.messageText}`));
                 break;
         }
+    }
+});
+
+client.on("CLEARCHAT", async (msg) => {
+    if (msg.isPermaban() && config.BANDonperma === true){
+        client.say(msg.channelName, "BAND");
     }
 });
 
