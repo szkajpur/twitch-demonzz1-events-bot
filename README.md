@@ -1,6 +1,6 @@
 # Demonzz1 events bot
 
-### ⚠️ Aby bot działał potrzebny jest [node](https://nodejs.org/en/download) i [npm](https://www.npmjs.com/get-npm) (npm domyślnie instalowany wraz z node) ⚠️
+### ⚠️ Aby bot działał potrzebny jest [node](https://nodejs.org/en/download) i npm (npm domyślnie instalowany wraz z node) ⚠️
 
 ## Instalacja i konfiguracja
 1. Pobieramy projekt [github](https://github.com/szkajpur/twitch-demonzz1-events-bot/archive/master.zip) lub poprzez `git clone https://github.com/szkajpur/twitch-demonzz1-events-bot`
