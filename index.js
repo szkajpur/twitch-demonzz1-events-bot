@@ -1,4 +1,4 @@
-import { ChatClient, AlternateMessageModifier, SlowModeRateLimiter } from '@kararty/dank-twitch-irc';
+import { ChatClient, AlternateMessageModifier } from '@mastondzn/dank-twitch-irc';
 import chalk from 'chalk';
 import editJsonFile from "edit-json-file";
 import reload from 'self-reload-json';
@@ -15,6 +15,7 @@ let file = editJsonFile(__dirname + '/config.json', {
 let client = new ChatClient({
     username: config.username,
     password: `oauth:${config.oauth}`,
+    rateLimits: "default",
     connection: {
         type: "websocket",
         secure: true,
@@ -23,7 +24,10 @@ let client = new ChatClient({
 
 // events on client
 client.use(new AlternateMessageModifier(client));
-client.use(new SlowModeRateLimiter(client, 10));
+
+client.on("connecting", async () => {
+    console.log(chalk.blueBright("Łączenie..."));
+});
 
 client.on("ready", async () => {
 	console.log(chalk.greenBright("Pomyślnie połączono do czatu:") + chalk.blueBright(` ${config.channels[0]}`));
@@ -33,6 +37,8 @@ client.on("ready", async () => {
 client.on("close", async (error) => {
     if (error !== null){
         console.error(`Client closed due to error`, error);
+    } else {
+        console.log(chalk.redBright("Client closed"));
     }
 });
 
@@ -65,7 +71,7 @@ client.on("PRIVMSG", async (msg) => {
                 if (isNaN(heist)){
                     client.say(msg.channelName, `@${msg.senderUsername}, Podaj poprawną wartość! ${config.prefix}ustaw (liczba do max 10k)`);
                     return;
-                } else if(heist > 10000 || heist <= 0){
+                } else if (heist > 10000 || heist <= 0){
                     client.say(msg.channelName, `@${msg.senderUsername}, Podaj liczbę od 1 do max 10k!`);
                     return;
                 };

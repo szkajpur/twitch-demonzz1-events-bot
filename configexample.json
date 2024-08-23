@@ -1,13 +1,13 @@
 {
-    "username": "your_ttv_username",
-    "oauth": "",
-    "channels": [
-      "demonzz1"
-    ],
-    "heist": 123,
-    "prefix": "!",
-    "command": "testbota",
-    "connect": "aha polaczono",
-    "bossBotName": "demonzzbot",
-    "BANDonperma": true
+  "username": "your_ttv_username",
+  "oauth": "",
+  "channels": [
+    "demonzz1"
+  ],
+  "heist": 123,
+  "prefix": "!",
+  "command": "testbota",
+  "connect": "aha polaczono",
+  "bossBotName": "demonzzbot",
+  "BANDonperma": true
 }
