@@ -1,27 +1,81 @@
-# Demonzz1 events bot
+# twitch-demonzz1-events-bot
 
-### ⚠️ Aby bot działał potrzebny jest [node](https://nodejs.org/en/download) i npm (npm domyślnie instalowany wraz z node) ⚠️
+Prosty bot odpowiadający na boss, ffa i heist u demonza. (I tak giveaway wygra widz gucia)
 
-## Instalacja i konfiguracja
-1. Pobieramy projekt [github](https://github.com/szkajpur/twitch-demonzz1-events-bot/archive/master.zip) lub poprzez `git clone https://github.com/szkajpur/twitch-demonzz1-events-bot`
-2. Przechodzimy do folderu twitch-demonzz1-events-bot za pomocą `cd twitch-demonzz1-events-bot`
-3. Instalujemy biblioteki `npm i`
-4. Zmieniamy nazwę pliku `configexample.json` na `config.json`
-5. Edytujemy plik `config.json`
-   - w `username` ustawiamy swój nick
-   - w `oauth` bierzemy ACCESS TOKEN ze stronki [twitchtokengenerator](https://twitchtokengenerator.com/) (bot token)
-   - w `command` polecam zmienić na coś innego
-   - heista można zmieniać w czasie rzeczywistym
-6. Uruchamiamy bota komendą `npm start`
-7. Jeśli pojawiła się wiadomość `Pomyślnie połączono do czatu...`, bot działa prawidłowo ;)
+## Co potrzebujesz
 
-## Komendy
+- [Node.js](https://nodejs.org/) (wersja 18 lub wyższa)
+- [pnpm](https://pnpm.io/) package manager
 
-- `!testbota` - Sprawdzenie czy bot działa. Każdy może ją uruchomić.
-- `!ustaw [ilość]` - Zmiana ilości heista. 
-- `!jakiheist` - Zwraca aktualnie ustawiony heist.
+## Instalacja
 
+1. Skopiuj repo:
+```bash
+git clone https://github.com/szkajpur/twitch-demonzz1-events-bot
+cd twitch-demonzz1-events-bot
+```
 
-## Autor
+2. Zainstaluj biblioteki używając pnpm:
+```bash
+pnpm install
+```
 
-- [@szkajpur](https://www.twitch.tv/szkajpur)
+## Konfiguracja
+
+1. Skopiuj `.envDefault` i nadaj mu nazwę `.env`
+
+```env
+TWITCH_USERNAME=forsen
+TWITCH_OAUTH=
+TWITCH_CHANNEL=demonzz1
+COMMAND_PREFIX=!
+STATUS_COMMAND=status
+CONNECT_MESSAGE=Pomyślnie połączono z czatem! MrDestructoid
+BOSS_BOT_NAME=demonzzbot
+HEIST_AMOUNT=1000
+BAND_ON_PERMA=true
+```
+
+### Wyjaśnienie zmiennych
+
+- `TWITCH_USERNAME`: Twój nick na ttv
+- `TWITCH_OAUTH`: Oauth Token (bez "oauth:" na początku)
+- `TWITCH_CHANNEL`: Kanał do którego się połączysz
+- `COMMAND_PREFIX`: Prefiks dla poleceń (domyślnie: !)
+- `STATUS_COMMAND`: Komenda do sprawdzania czy bot działa
+- `CONNECT_MESSAGE`: Co napisze bot po połączeniu
+- `BOSS_BOT_NAME`: Nick bota od bossów
+- `HEIST_AMOUNT`: Ilość heista
+- `BAND_ON_PERMA`: Czy pisać "BAND" w przypadku permów (true/false)
+
+## Jak zdobyć Twitch OAuth Token
+
+1. Wejdź na [TwitchTokenGenerator](https://twitchtokengenerator.com/)
+2. Kliknij `Bot Chat Token`
+3. Rozwiąż Captchę jak jest
+4. Token jest w `Generated Tokens` -> `ACCESS_TOKEN`
+
+## Odpalanie bota
+
+1. Zbuduj bota:
+```bash
+pnpm run build
+```
+
+2. Wystartuj bota:
+```bash
+pnpm run start
+```
+
+## Dostępne komendy
+
+- `!status` - Check if the bot is working
+- `!ustaw [amount]` - Set heist amount (bot owner only)
+- `!jakiheist` - Check current heist amount (bot owner only)
+
+## Auto-Odpowiedzi
+
+Bot będzie automatycznie odpowiadał na poniższe wiadomości:
+- `Type !boss to join!` → `!boss`
+- `Type !ffa to join!` → `!ffa`
+- `-Everyone can Join!- In order to join type !heist (amount).` → `!heist [ustawiony_heist]`

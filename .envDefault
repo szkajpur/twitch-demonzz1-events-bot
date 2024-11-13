@@ -1,0 +1,11 @@
+TWITCH_USERNAME=forsen
+TWITCH_OAUTH=
+TWITCH_CHANNEL=demonzz1
+
+COMMAND_PREFIX=!
+STATUS_COMMAND=status
+CONNECT_MESSAGE=Pomyślnie połączono z czatem! MrDestructoid
+BOSS_BOT_NAME=demonzzbot
+
+HEIST_AMOUNT=1000
+BAND_ON_PERMA=true
